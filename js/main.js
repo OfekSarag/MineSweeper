@@ -62,7 +62,8 @@ function setMinesNegsCount(board, rowIdx, colIdx) {
 
 function cellClicked(elCell, i, j) {
   gBoard[i][j].isShown = true;
-  elCell.visibility = visible
+  elCell.style.visibility = visibile
+
   if (gBoard[i][j]) {
     console.log("mines around me", gBoard[i][j].minesAroundCount);
   }
@@ -76,7 +77,7 @@ function renderBoard() {
     for (var j = 0; j < gBoard.length; j++) {
       var cell = gBoard[i][j];
       var className = "cell cell-" + i + "-" + j;
-      strHTML += `<td hidden onclick="cellClicked(this,${i}, ${j})" class="${className}">
+      strHTML += `<td onclick="cellClicked(this,${i}, ${j})" class="${className}">
         ${cell.isMine ? MINE.text : cell.minesAroundCount}
       </td>`;
     }

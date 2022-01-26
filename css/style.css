@@ -14,5 +14,6 @@ td{
     width: 100px;
     height: 100px;
     text-align: center;
-    border: 1px solid black;
+    border: 2px solid black;
+    visibility: hidden;
 }
