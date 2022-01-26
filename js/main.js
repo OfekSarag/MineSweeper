@@ -3,6 +3,7 @@
 const MINE = {
   text: "💣",
 };
+
 var gBoard;
 
 var gLevel = {
@@ -30,6 +31,8 @@ function buildBoard() {
 function placeMines(board) {
   board[2][1] = MINE;
   board[0][3] = MINE;
+  console.log(board);
+
   board[2][1].isMine = true;
   board[0][3].isMine = true;
   setMinesNegsCount(board, 2, 1);
@@ -58,7 +61,11 @@ function setMinesNegsCount(board, rowIdx, colIdx) {
 }
 
 function cellClicked(elCell, i, j) {
-  elCell.isShown = true;
+  gBoard[i][j].isShown = true;
+  elCell.visibility = visible
+  if (gBoard[i][j]) {
+    console.log("mines around me", gBoard[i][j].minesAroundCount);
+  }
   renderCell({ i, j }, gBoard[i][j].text);
 }
 
@@ -69,8 +76,8 @@ function renderBoard() {
     for (var j = 0; j < gBoard.length; j++) {
       var cell = gBoard[i][j];
       var className = "cell cell-" + i + "-" + j;
-      strHTML += `<td onclick="cellClicked(this,${i}, ${j})" class="${className}">
-        ${cell.isShown ? cell.text : cell.minesAroundCount}
+      strHTML += `<td hidden onclick="cellClicked(this,${i}, ${j})" class="${className}">
+        ${cell.isMine ? MINE.text : cell.minesAroundCount}
       </td>`;
     }
     strHTML += "</tr>";
