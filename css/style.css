@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+.board-container{
+    background-color: lightseagreen;
+    width: 400px;
+    height: 400px;
+}
+
+table{
+    border: 1px solid black;
+}
+td{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid black;
+}
