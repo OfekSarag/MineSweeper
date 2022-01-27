@@ -1,19 +1,29 @@
 *{
     box-sizing: border-box;
 }
+
+body{
+   background-color: lightslategrey;
+   margin: auto;
+   margin-top: 180px;
+   min-width: 400px;
+   max-width: 500px;
+}
 .board-container{
-    background-color: lightseagreen;
+    
     width: 400px;
     height: 400px;
 }
 
 table{
-    border: 1px solid black;
+    border: 4px solid black;
 }
 td{
+    background-color: rgb(197, 197, 152);
     width: 100px;
     height: 100px;
     text-align: center;
-    border: 2px solid black;
-    /* display:none; */
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid rgb(63, 33, 13);
 }
