@@ -27,7 +27,6 @@ function renderCell(location, value) {
   var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
   elCell.innerHTML = value;
 }
-
 function setMinesNegsCount(board, rowIdx, colIdx) {
   board.minesAroundCount = 0;
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {

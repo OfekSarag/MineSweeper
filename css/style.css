@@ -8,6 +8,7 @@ body{
    margin-top: 180px;
    min-width: 400px;
    max-width: 500px;
+
 }
 .board-container{
     
@@ -26,4 +27,19 @@ td{
     font-size: 25px;
     font-weight: bold;
     border: 1px solid rgb(63, 33, 13);
+}
+
+.restart{
+    margin-top:26px;
+    margin-left: 70px;
+}
+.restart button{
+    background-color: rgb(3, 91, 149);
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.restart h2{
+    font-size: 35px;
+    margin-left: 60px;
 }
