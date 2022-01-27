@@ -3,34 +3,33 @@
 }
 
 body{
-   background-color: lightslategrey;
-   margin: auto;
+   background-color: #778899;
    margin-top: 180px;
-   min-width: 400px;
-   max-width: 500px;
-
+   
 }
 .board-container{
-    
-    width: 400px;
-    height: 400px;
+    table-layout: fixed;
+    position:absolute;
 }
 
 table{
-    border: 4px solid black;
+    border: 2px solid rgb(51, 45, 45);
+    table-layout: fixed;
 }
 td{
+    border-radius: 6px;
     background-color: rgb(197, 197, 152);
-    width: 100px;
-    height: 100px;
+    width:50px;
+    height:50px;
     text-align: center;
+    line-height: 0px;
     font-size: 25px;
     font-weight: bold;
     border: 1px solid rgb(63, 33, 13);
 }
 
 .restart{
-    margin-top:26px;
+    margin-top:-200px;
     margin-left: 70px;
 }
 .restart button{
@@ -42,4 +41,12 @@ td{
 .restart h2{
     font-size: 35px;
     margin-left: 60px;
+}
+
+.levels button{
+    margin-right: 15px;
+    font-weight: bold;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+
 }

@@ -8,10 +8,8 @@ var gStartTime;
 var gBoard;
 var gIsFirstClick;
 
-var gLevel = {
-  size: 4,
-  mines: 2,
-};
+var gLevel = gEasy;
+ 
 
 var gGame = {
   isOn: false,
@@ -24,7 +22,12 @@ function init() {
   gBoard = buildBoard();
   renderBoard(gBoard);
   gIsFirstClick = true;
-  gGame.isOn = true;
+  gGame.isOn = true; 
+  clearInterval(gWatchInterval);
+  gWatchInterval = null;
+  gGame.shownCount = 0;
+  gGame.markedCount=0;
+
 }
 
 function buildBoard() {
@@ -42,8 +45,8 @@ function buildBoard() {
 
 function placeMines(board) {
   for (var i = 0; i < gLevel.mines; i++) {
-    var rowIdx = getRandomIntInclusive(0, board.length - 1);
-    var colIdx = getRandomIntInclusive(0, board.length - 1);
+    var rowIdx = getRandomIntInclusive(0, board.length -1);
+    var colIdx = getRandomIntInclusive(0, board.length -1 );
     board[rowIdx][colIdx].isMine = true;
   }
 }
@@ -64,20 +67,21 @@ function cellClicked(elCell, i, j) {
       gIsFirstClick = false;
     }
     if (elCell.isMarked) return;
-
+    if (elCell.isShown) return;
     elCell.isShown = true;
-
+    
     var minesAmount = setMinesNegsCount(gBoard, i, j);
     if (gBoard[i][j].isMine) {
       elCell.innerHTML = `<span class ='content'>${MINE}</span>`;
-      gGame.shownCount++;
       checkGameOver(false);
     } else {
       elCell.innerHTML = `<span class ='content'>${minesAmount}</span>`;
-      gGame.shownCount++;
+      elCell.style.backgroundColor= '#578899';
     }
   }
+  gGame.shownCount++;
   checkWin();
+  console.log(gGame.shownCount);
 }
 
 function cellMarked(elCell) {
@@ -97,6 +101,7 @@ function cellMarked(elCell) {
       gGame.markedCount--;
     }
   }
+  checkWin();
 }
 
 function renderBoard(board) {
@@ -127,21 +132,20 @@ function showAllMines() {
 }
 
 function checkWin() {
-  var minesAmount = gLevel.mines;
   if (
-    gGame.markedCount === minesAmount &&
-    gGame.shownCount === (gLevel.size ** 2) - minesAmount
+    gGame.markedCount === gLevel.mines &&
+    gGame.shownCount === (gLevel.size ** 2) - gLevel.mines
   ) {
     checkGameOver(true);
   }
 }
 
 function restartGame() {
-  init();
   var elRestart = document.querySelector(".restart");
   elRestart.innerHTML = "";
   var elTimer = document.querySelector(".timer");
   elTimer.innerText = "0";
+  init();
 }
 
 function checkGameOver(isWin) {

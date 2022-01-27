@@ -1,28 +1,55 @@
+var gEasy = {
+  level: "easy",
+  size: 4,
+  mines: 2,
+};
+var gMedium = {
+  level: "medium",
+  size: 8,
+  mines: 12,
+};
+var gExpert = {
+  level: "medium",
+  size: 12,
+  mines: 30,
+};
+
+function setDiff(diff) {
+  if (diff === "easy") {
+    gLevel = gEasy;
+  }
+  if (diff === "medium") {
+    gLevel = gMedium;
+  }
+  if (diff === "expert") {
+    gLevel = gExpert;
+  }
+
+  init();
+}
 function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-  }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
 
+function startStopWatch() {
+  gWatchInterval = setInterval(updateWatch, 1);
+  gStartTime = Date.now();
+}
 
-  function startStopWatch() {
-    gWatchInterval = setInterval(updateWatch, 1);
-    gStartTime = Date.now();
-  }
-  
-  function updateWatch() {
-    var now = Date.now();
-    var time = ((now - gStartTime) / 1000).toFixed(3);
-    var elTime = document.querySelector(".timer");
-    elTime.innerText = time;
-  }
-  
-  function endStopWatch() {
-    clearInterval(gWatchInterval);
-    gWatchInterval = null;
-  }
-  
-  
+function updateWatch() {
+  var now = Date.now();
+  var time = ((now - gStartTime) / 1000).toFixed(3);
+  var elTime = document.querySelector(".timer");
+  elTime.innerText = time;
+}
+
+function endStopWatch() {
+  clearInterval(gWatchInterval);
+  gWatchInterval = null;
+}
+
 function renderCell(location, value) {
   var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
   elCell.innerHTML = value;
